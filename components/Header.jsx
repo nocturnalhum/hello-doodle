@@ -25,7 +25,7 @@ export default function Header() {
           <BrushSettings />
           <button
             onClick={() => setTool('pen')}
-            className={`bg-black p-3 hover:opacity-80 border-l border-l-gray-400 ${
+            className={`bg-black p-3 hover:opacity-80 ${
               tool === 'pen' ? 'opacity-100' : 'opacity-50'
             }`}
           >
