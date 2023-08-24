@@ -36,7 +36,6 @@ export default function Canvas({ elementRef }) {
       ctx.canvas.style.width = `${elementRef.current.clientWidth}px`;
       ctx.canvas.style.height = `${elementRef.current.clientHeight}px`;
       elements.forEach((element) => drawElement(roughCanvas, ctx, element));
-      // elements.forEach(({ roughShape }) => roughCanvas.draw(roughShape));
     };
     window.addEventListener('resize', resize);
     return () => window.removeEventListener('resize', resize);

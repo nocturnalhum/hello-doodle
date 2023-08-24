@@ -31,10 +31,10 @@ export default function Home() {
     <main
       className={`flex h-screen min-h-screen items-center justify-between bg-gradient-to-br from-slate-700 via-blue-300 to-gray-400`}
     >
-      <div className='flex w-full max-w-7xl mx-auto items-center  portrait:flex-col landscape:flex-row'>
+      <div className='flex h-full w-full max-w-7xl mx-auto items-center  portrait:flex-col landscape:flex-row'>
         <Header />
         <div
-          className={`relative flex h-[88dvh] w-full glass-border duration-500 preserve-3d touch-none ${
+          className={`relative flex h-full w-full glass-border duration-500 preserve-3d touch-none ${
             isFlipped ? 'rotate-y-180 ' : ''
           }`}
         >
