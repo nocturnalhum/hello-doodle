@@ -53,10 +53,19 @@ export default function Footer() {
     image.onload = () => {
       const canvas = canvasRef.current;
       const context = canvas.getContext('2d');
+
+      console.log('Canvas Width', canvas.width, 'Canvas Height', canvas.height);
+      console.log(
+        'Image Width',
+        image.naturalWidth,
+        'Image Height',
+        image.naturalHeight
+      );
       const scale =
-        image.naturalWidth > image.naturalHeight
-          ? canvas.width / image.naturalWidth
-          : canvas.height / image.naturalHeight;
+        canvas.width > canvas.height
+          ? canvas.height / Math.max(image.naturalWidth, image.naturalHeight)
+          : canvas.width / Math.max(image.naturalWidth, image.naturalHeight);
+
       const imageWidth = image.naturalWidth * scale;
       const imageHeight = image.naturalHeight * scale;
       const startX = (canvas.width - imageWidth) / 2;
@@ -74,6 +83,9 @@ export default function Footer() {
       // Get the data URL of the scaled image
       const drawing = scaledCanvas.toDataURL('image/png');
 
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      context.drawImage(image, startX, startY, imageWidth, imageHeight);
+      localStorage.setItem('drawing', drawing);
       setActions((prevActions) => {
         const newActions = prevActions.slice(0, currentPosition + 1);
         return [...newActions, drawing];

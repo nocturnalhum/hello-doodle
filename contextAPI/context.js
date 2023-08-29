@@ -11,6 +11,11 @@ export default function AppStore({ children }) {
   const [message, setMessage] = useState(null);
   const [error, setError] = useState(null);
   const [color, setColor] = useState('#000');
+  const [color1, setColor1] = useState('#000');
+  const [color2, setColor2] = useState('#F00');
+  const [color3, setColor3] = useState('#0F0');
+  const [color4, setColor4] = useState('#00F');
+  const [color5, setColor5] = useState('#FF0');
   const [radius, setRadius] = useState(5);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [actions, setActions] = useState([]);
@@ -41,6 +46,16 @@ export default function AppStore({ children }) {
           setIsFlipped,
           color,
           setColor,
+          color1,
+          setColor1,
+          color2,
+          setColor2,
+          color3,
+          setColor3,
+          color4,
+          setColor4,
+          color5,
+          setColor5,
           radius,
           setRadius,
           isModalOpen,

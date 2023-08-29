@@ -73,10 +73,6 @@ export function drawElement(roughCanvas, context, element) {
     case 'line':
     case 'rectangle':
     case 'ellipse':
-      // if (element.x1 === element.x2 && element.y1 === element.y2) {
-      //   console.log('Breaking');
-      //   break;
-      // }
       roughCanvas.draw(element.roughShape);
       break;
     case 'pen':
@@ -223,7 +219,7 @@ const positionWithinElement = (x, y, element) => {
 };
 
 // ==========================================================================
-// =============<<< OnLine >>>===============================================
+// =============<<< Mouse Pointer Is Touching Line Element >>>===============
 // ==========================================================================
 const onLine = (x1, y1, x2, y2, x, y, maxDistance = 1) => {
   const a = { x: x1, y: y1 };
