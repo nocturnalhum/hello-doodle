@@ -18,6 +18,9 @@ export function createShape(
   type,
   color,
   radius,
+  smoothing,
+  taperStart,
+  taperEnd,
   isShiftPressed
 ) {
   let x2Adjusted = x2;
@@ -59,7 +62,16 @@ export function createShape(
             );
       return { id, x1, y1, x2: x2Adjusted, y2: y2Adjusted, type, roughShape };
     case 'pen':
-      return { id, type, points: [{ x: x1, y: y1 }], color, radius };
+      return {
+        id,
+        type,
+        points: [{ x: x1, y: y1 }],
+        color,
+        radius,
+        smoothing,
+        taperStart,
+        taperEnd,
+      };
     default:
       throw new Error(`Tool not recognised: ${type}`);
   }
@@ -79,8 +91,23 @@ export function drawElement(roughCanvas, context, element) {
       const stroke = getSvgPathFromStroke(
         getStroke(element.points, {
           size: element.radius * 2,
+          smoothing: element.smoothing,
+          easing: (t) => t,
+          simulatePressure: true,
+          last: true,
+          start: {
+            cap: true,
+            taper: element.taperStart,
+            easing: (t) => t,
+          },
+          end: {
+            cap: true,
+            taper: element.taperEnd,
+            easing: (t) => t,
+          },
         })
       );
+      console.log('TAPER', element.taperEnd);
       context.fillStyle = element.color;
       context.fill(new Path2D(stroke));
       break;

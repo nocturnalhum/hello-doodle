@@ -15,8 +15,12 @@ export default function AppStore({ children }) {
   const [color2, setColor2] = useState('#F00');
   const [color3, setColor3] = useState('#0F0');
   const [color4, setColor4] = useState('#00F');
-  const [color5, setColor5] = useState('#FF0');
+  const [color5, setColor5] = useState('#FFC200');
   const [radius, setRadius] = useState(5);
+  const [smoothing, setSmoothing] = useState(0.5);
+  const [taperStart, setTaperStart] = useState(0);
+  const [taperEnd, setTaperEnd] = useState(0);
+  const [fill, setFill] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [actions, setActions] = useState([]);
   const [currentPosition, setCurrentPosition] = useState(-1);
@@ -58,6 +62,14 @@ export default function AppStore({ children }) {
           setColor5,
           radius,
           setRadius,
+          taperStart,
+          setTaperStart,
+          taperEnd,
+          setTaperEnd,
+          smoothing,
+          setSmoothing,
+          fill,
+          setFill,
           isModalOpen,
           setIsModalOpen,
           actions,

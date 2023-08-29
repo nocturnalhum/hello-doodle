@@ -15,8 +15,17 @@ import { useCanvasContext } from '@/contextAPI/context';
 export default function Canvas({ elementRef }) {
   const [action, setAction] = useState(false);
   const [selectedElement, setSelectedElement] = useState(null);
-  const { tool, elements, setElements, color, radius, canvasRef } =
-    useCanvasContext();
+  const {
+    tool,
+    elements,
+    setElements,
+    color,
+    radius,
+    smoothing,
+    taperStart,
+    taperEnd,
+    canvasRef,
+  } = useCanvasContext();
   const isShiftPressed = useRef(false);
 
   useEffect(() => {
@@ -125,8 +134,12 @@ export default function Canvas({ elementRef }) {
         tool,
         color,
         radius,
+        smoothing,
+        taperStart,
+        taperEnd,
         isShiftPressed.current
       );
+      console.log('T', taperEnd);
       console.log('Mouse Down Set Element');
       console.log('Element Set', elements);
       setElements((prev) => [...prev, element]);
@@ -163,6 +176,7 @@ export default function Canvas({ elementRef }) {
     if (action === 'draw') {
       const index = elements.length - 1;
       const { x1, y1 } = elements[index];
+      console.log('T2', taperEnd);
       // When isShiftPressed, rectangles and ellipses will be restricted to 1:1 ratio
       updateElement(
         elements,
@@ -175,6 +189,9 @@ export default function Canvas({ elementRef }) {
         tool,
         color,
         radius,
+        smoothing,
+        taperStart,
+        taperEnd,
         isShiftPressed.current
       );
     } else if (action === 'moving') {

@@ -1,3 +1,4 @@
+import { useCanvasContext } from '@/contextAPI/context';
 import useClickOutside from '@/hooks/useClickOutside';
 import React, { useCallback, useRef, useState } from 'react';
 import { HexColorPicker } from 'react-colorful';
@@ -5,12 +6,14 @@ import { HexColorPicker } from 'react-colorful';
 export default function PopoverPicker({ color, onChange, settingsToggle }) {
   const [isOpen, toggle] = useState(false);
   const popover = useRef();
+  const { setColor } = useCanvasContext();
 
   const close = useCallback(() => {
+    onChange(color);
+    setColor(color);
     toggle(false);
     settingsToggle(false);
-    onChange(color);
-  }, [color, onChange, settingsToggle]);
+  }, [color, onChange, settingsToggle, setColor]);
 
   useClickOutside(popover, close);
 

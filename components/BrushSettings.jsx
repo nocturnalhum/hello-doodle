@@ -1,10 +1,12 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useCanvasContext } from '@/contextAPI/context';
 import { Slider } from '@/components/ui/slider';
+import { Switch } from '@/components/ui/switch';
 import { PiSlidersBold, PiXBold } from 'react-icons/pi';
 // import { TiTimesOutline } from 'react-icons/ti';
 import useClickOutside from '@/hooks/useClickOutside';
 import PopoverPicker from './PopoverPicker';
+import ToggleSwitch from './ToggleSwitch';
 
 export default function BrushSettings() {
   const [isOpen, toggle] = useState(false);
@@ -14,12 +16,24 @@ export default function BrushSettings() {
   const {
     radius,
     setRadius,
-    setColor,
+    setColor1,
+    setColor2,
+    setColor3,
+    setColor4,
+    setColor5,
     color1,
     color2,
     color3,
     color4,
     color5,
+    taperStart,
+    setTaperStart,
+    taperEnd,
+    setTaperEnd,
+    smoothing,
+    setSmoothing,
+    fill,
+    setFill,
     canvasRef,
   } = useCanvasContext();
 
@@ -68,33 +82,35 @@ export default function BrushSettings() {
           ref={popover}
         >
           <div className='h-full max-w-xs flex flex-col items-start p-5 gap-y-3 text-gray-950 font-medium  '>
-            <div className='flex items-center gap-5 select-none z-10'>
+            <div className='flex flex-col items-start gap-3 select-none z-10'>
               Brush Color:
-              <PopoverPicker
-                color={color1}
-                onChange={setColor}
-                settingsToggle={toggle}
-              />
-              <PopoverPicker
-                color={color2}
-                onChange={setColor}
-                settingsToggle={toggle}
-              />
-              <PopoverPicker
-                color={color3}
-                onChange={setColor}
-                settingsToggle={toggle}
-              />
-              <PopoverPicker
-                color={color4}
-                onChange={setColor}
-                settingsToggle={toggle}
-              />
-              <PopoverPicker
-                color={color5}
-                onChange={setColor}
-                settingsToggle={toggle}
-              />
+              <div className='flex gap-5'>
+                <PopoverPicker
+                  color={color1}
+                  onChange={setColor1}
+                  settingsToggle={toggle}
+                />
+                <PopoverPicker
+                  color={color2}
+                  onChange={setColor2}
+                  settingsToggle={toggle}
+                />
+                <PopoverPicker
+                  color={color3}
+                  onChange={setColor3}
+                  settingsToggle={toggle}
+                />
+                <PopoverPicker
+                  color={color4}
+                  onChange={setColor4}
+                  settingsToggle={toggle}
+                />
+                <PopoverPicker
+                  color={color5}
+                  onChange={setColor5}
+                  settingsToggle={toggle}
+                />
+              </div>
             </div>
             Size: {radius}
             <Slider
@@ -104,22 +120,34 @@ export default function BrushSettings() {
               step={1}
               onValueChange={(value) => setRadius(value)}
             />
-            Taper Start: {radius}
+            Smoothing: {smoothing}
             <Slider
-              value={[radius]}
-              min={1}
-              max={50}
-              step={1}
-              onValueChange={(value) => setRadius(value)}
+              value={[smoothing]}
+              min={0.0}
+              max={0.9}
+              step={0.1}
+              onValueChange={(value) => setSmoothing(value)}
             />
-            Taper End: {radius}
+            Taper Start: {taperStart}
             <Slider
-              value={[radius]}
+              value={[taperStart]}
               min={1}
-              max={50}
+              max={99}
               step={1}
-              onValueChange={(value) => setRadius(value)}
+              onValueChange={(value) => setTaperStart(value)}
             />
+            Taper End: {taperEnd}
+            <Slider
+              value={[taperEnd]}
+              min={1}
+              max={99}
+              step={1}
+              onValueChange={(value) => setTaperEnd(value)}
+            />
+            <div className='flex gap-4'>
+              Fill:
+              <ToggleSwitch value={fill} onChange={setFill} />
+            </div>
           </div>
         </div>
       )}
