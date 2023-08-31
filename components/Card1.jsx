@@ -3,6 +3,7 @@ import Canvas from './Canvas';
 
 export default function Card1() {
   const elementRef = useRef();
+
   return (
     <div ref={elementRef} className='h-full w-full touch-none'>
       <Canvas elementRef={elementRef} />

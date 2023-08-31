@@ -4,16 +4,16 @@ import ConfirmationModal from '@/components/ConfirmationModal';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import { useCanvasContext } from '@/contextAPI/context';
-import Image from 'next/image';
+import { MdOutlineFlipCameraAndroid } from 'react-icons/md';
 
 export default function Home() {
   const {
     canvasRef,
     isFlipped,
+    setIsFlipped,
     isModalOpen,
     setIsModalOpen,
     setElements,
-    showTools,
   } = useCanvasContext();
 
   const handleConfirmClear = () => {
@@ -28,6 +28,8 @@ export default function Home() {
   const handleCancelClear = () => {
     setIsModalOpen(false);
   };
+
+  console.log('isFlipped - index', isFlipped);
   return (
     <main
       className={`flex h-screen min-h-screen items-center justify-between bg-gradient-to-br from-slate-700 via-blue-300 to-gray-400`}
@@ -37,32 +39,29 @@ export default function Home() {
         onConfirm={handleConfirmClear}
         onCancel={handleCancelClear}
       />
+
       <div className='flex h-full w-full max-w-7xl mx-auto items-center  portrait:flex-col landscape:flex-row'>
         <Header />
-        <div
-          className={`relative flex h-full w-full glass-border duration-500 preserve-3d touch-none ${
-            isFlipped ? 'rotate-y-180 ' : ''
-          }`}
-        >
-          <div className='absolute inset-0 p-2'>
-            <Card1 />
-          </div>
-          <div className='absolute inset-0 h-full w-full rounded-xl rotate-y-180 backface-hidden p-4'>
-            <Card2 />
+        <div className='relative w-full h-full'>
+          <button
+            onClick={() => setIsFlipped(!isFlipped)}
+            className='absolute top-4 right-4 bg-blue-50 text-blue-950 rounded-full z-30'
+          >
+            <MdOutlineFlipCameraAndroid size={30} />
+          </button>
+          <div
+            className={`relative flex h-full w-full glass-border duration-500 preserve-3d touch-none ${
+              isFlipped ? 'rotate-y-180 ' : ''
+            }`}
+          >
+            <div className='absolute inset-0 p-2'>
+              <Card1 />
+            </div>
+            <div className='absolute inset-0 h-full w-full rotate-y-180 backface-hidden p-2'>
+              <Card2 />
+            </div>
           </div>
         </div>
-        <div
-          className={`absolute top-10 duration-300 ${
-            !showTools ? '-translate-x-[100%]' : 'translate-x-[0%]'
-          } `}
-        >
-          {/* <Tools /> */}
-        </div>
-        <div
-          className={`absolute top-0 duration-300 ${
-            showTools ? 'translate-y-[100%]' : 'translate-y-0'
-          } `}
-        ></div>
         <Footer />
       </div>
     </main>

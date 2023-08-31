@@ -1,12 +1,9 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useCanvasContext } from '@/contextAPI/context';
 import { Slider } from '@/components/ui/slider';
-import { Switch } from '@/components/ui/switch';
 import { PiSlidersBold, PiXBold } from 'react-icons/pi';
-// import { TiTimesOutline } from 'react-icons/ti';
 import useClickOutside from '@/hooks/useClickOutside';
 import PopoverPicker from './PopoverPicker';
-import ToggleSwitch from './ToggleSwitch';
 
 export default function BrushSettings() {
   const [isOpen, toggle] = useState(false);
@@ -16,6 +13,7 @@ export default function BrushSettings() {
   const {
     radius,
     setRadius,
+    setColor,
     setColor1,
     setColor2,
     setColor3,
@@ -32,12 +30,13 @@ export default function BrushSettings() {
     setTaperEnd,
     smoothing,
     setSmoothing,
-    fill,
-    setFill,
+    thinning,
+    setThinning,
     canvasRef,
   } = useCanvasContext();
 
   const close = useCallback(() => toggle(false), []);
+
   useClickOutside(popover, close);
 
   const handleSettings = () => {
@@ -66,52 +65,65 @@ export default function BrushSettings() {
     };
   }, [isOpen, canvasRef]);
 
+  const handleChange = (e, setColorVal) => {
+    setColorVal(e);
+    setColor(e);
+  };
+
   return (
-    <div className='relative flex justify-center p-3 bg-gray-500 portrait:rounded-l-md landscape:rounded-t-md z-50'>
+    <div
+      className={`relative flex justify-center p-3  portrait:rounded-l-md landscape:rounded-t-md z-40  ${
+        isOpen ? 'bg-red-500' : 'bg-gray-500'
+      }`}
+    >
       <button
         onClick={handleSettings}
-        className={`flex justify-center items-center w-ful  portrait:rounded-l-md landscape:rounded-t-md hover:animate-pulse`}
+        className={`flex justify-center items-center w-full portrait:rounded-l-md landscape:rounded-t-md hover:animate-pulse`}
       >
         {isOpen ? <PiXBold size={25} /> : <PiSlidersBold size={25} />}
       </button>
 
       {isOpen && (
         <div
-          className={`fixed inset-0 m-auto p-3 bg-gray-300/50  rounded-xl backdrop-blur-md`}
+          className={`fixed inset-0 m-auto p-1 md:p-3 bg-gray-300/50  rounded-xl backdrop-blur-md`}
           style={{ width: width + 'px', height: height + 'px' }}
           ref={popover}
         >
           <div className='h-full max-w-xs flex flex-col items-start p-5 gap-y-3 text-gray-950 font-medium  '>
-            <div className='flex flex-col items-start gap-3 select-none z-10'>
+            <div className='flex items-center w-96 gap-3 select-none z-10'>
               Brush Color:
-              <div className='flex gap-5'>
+              <div className='flex gap-3 sm:gap-5'>
                 <PopoverPicker
                   color={color1}
-                  onChange={setColor1}
+                  onChange={(e) => handleChange(e, setColor1)}
                   settingsToggle={toggle}
                 />
                 <PopoverPicker
                   color={color2}
-                  onChange={setColor2}
+                  onChange={(e) => handleChange(e, setColor2)}
                   settingsToggle={toggle}
                 />
                 <PopoverPicker
                   color={color3}
-                  onChange={setColor3}
+                  onChange={(e) => handleChange(e, setColor3)}
                   settingsToggle={toggle}
                 />
                 <PopoverPicker
                   color={color4}
-                  onChange={setColor4}
+                  onChange={(e) => handleChange(e, setColor4)}
                   settingsToggle={toggle}
                 />
                 <PopoverPicker
                   color={color5}
-                  onChange={setColor5}
+                  onChange={(e) => handleChange(e, setColor5)}
                   settingsToggle={toggle}
                 />
               </div>
             </div>
+            <hr
+              className='border border-gray-400/50'
+              style={{ width: width - '60' + 'px' }}
+            />
             Size: {radius}
             <Slider
               value={[radius]}
@@ -127,6 +139,14 @@ export default function BrushSettings() {
               max={0.9}
               step={0.1}
               onValueChange={(value) => setSmoothing(value)}
+            />
+            Thinning: {thinning}
+            <Slider
+              value={[thinning]}
+              min={-0.99}
+              max={0.99}
+              step={0.01}
+              onValueChange={(value) => setThinning(value)}
             />
             Taper Start: {taperStart}
             <Slider
@@ -144,10 +164,6 @@ export default function BrushSettings() {
               step={1}
               onValueChange={(value) => setTaperEnd(value)}
             />
-            <div className='flex gap-4'>
-              Fill:
-              <ToggleSwitch value={fill} onChange={setFill} />
-            </div>
           </div>
         </div>
       )}

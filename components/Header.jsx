@@ -15,9 +15,9 @@ import { useCanvasContext } from '@/contextAPI/context';
 import BrushSettings from './BrushSettings';
 
 export default function Header() {
-  const { color, setColor, radius, setRadius, tool, setTool } =
-    useCanvasContext();
+  const { tool, setTool } = useCanvasContext();
   const inputRef = useRef();
+
   return (
     <div className='flex justify-center items-center text-gray-50 portrait:h-[5rem] portrait:w-full landscape:h-full landscape:w-[5rem]'>
       <div className='flex portrait:flex-row landscape:flex-col justify-center items-center gap-5'>

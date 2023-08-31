@@ -1,5 +1,5 @@
-import getStroke from 'perfect-freehand';
 import rough from 'roughjs/bundled/rough.cjs.js';
+import getStroke from 'perfect-freehand';
 
 const generator = rough.generator();
 
@@ -19,6 +19,7 @@ export function createShape(
   color,
   radius,
   smoothing,
+  thinning,
   taperStart,
   taperEnd,
   isShiftPressed
@@ -69,6 +70,7 @@ export function createShape(
         color,
         radius,
         smoothing,
+        thinning,
         taperStart,
         taperEnd,
       };
@@ -90,8 +92,10 @@ export function drawElement(roughCanvas, context, element) {
     case 'pen':
       const stroke = getSvgPathFromStroke(
         getStroke(element.points, {
-          size: element.radius * 2,
+          size: element.radius * 1.5,
           smoothing: element.smoothing,
+          thinning: element.thinning,
+          streamline: 0.5,
           easing: (t) => t,
           simulatePressure: true,
           last: true,
@@ -107,7 +111,6 @@ export function drawElement(roughCanvas, context, element) {
           },
         })
       );
-      console.log('TAPER', element.taperEnd);
       context.fillStyle = element.color;
       context.fill(new Path2D(stroke));
       break;

@@ -22,6 +22,7 @@ export default function Canvas({ elementRef }) {
     color,
     radius,
     smoothing,
+    thinning,
     taperStart,
     taperEnd,
     canvasRef,
@@ -135,13 +136,12 @@ export default function Canvas({ elementRef }) {
         color,
         radius,
         smoothing,
+        thinning,
         taperStart,
         taperEnd,
         isShiftPressed.current
       );
-      console.log('T', taperEnd);
-      console.log('Mouse Down Set Element');
-      console.log('Element Set', elements);
+      // console.log('Element Set', elements);
       setElements((prev) => [...prev, element]);
       setSelectedElement(element);
       setAction(tool === 'text' ? 'writing' : 'draw');
@@ -176,7 +176,6 @@ export default function Canvas({ elementRef }) {
     if (action === 'draw') {
       const index = elements.length - 1;
       const { x1, y1 } = elements[index];
-      console.log('T2', taperEnd);
       // When isShiftPressed, rectangles and ellipses will be restricted to 1:1 ratio
       updateElement(
         elements,
@@ -190,6 +189,7 @@ export default function Canvas({ elementRef }) {
         color,
         radius,
         smoothing,
+        thinning,
         taperStart,
         taperEnd,
         isShiftPressed.current
@@ -278,7 +278,7 @@ export default function Canvas({ elementRef }) {
     }
     setAction('none');
     setSelectedElement(null);
-    console.log('Elements-index', elements[index]);
+    // console.log('Elements-index', elements[index]);
   };
 
   return (

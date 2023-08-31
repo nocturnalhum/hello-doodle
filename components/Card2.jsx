@@ -4,8 +4,9 @@ import { useDiffusionContext } from '@/contextAPI/context';
 
 export default function Card2() {
   const { prediction, message, error } = useDiffusionContext();
+
   return (
-    <div className='relative h-full w-full bg-gray-300 rounded-2xl'>
+    <div className='relative h-full w-full bg-gray-900 rounded-xl flex items-center justify-center'>
       {prediction && (
         <>
           {prediction?.output && (
@@ -24,10 +25,10 @@ export default function Card2() {
           {message && (
             <p className='py-3 text-lg text-orange-500'>Status: {message}</p>
           )}
-          {prediction.status !== 'succeeded' && (
-            <div className='flex flex-col items-center justify-center opacity-90  '>
-              <LuLoader2 size={30} className='animate-spin' />
-              <p className='py-3 text-lg text-orange-500'>
+          {!message && prediction.status !== 'succeeded' && (
+            <div className='flex flex-col items-center justify-center gap-2'>
+              <LuLoader2 size={35} className='text-white animate-spin' />
+              <p className='py-3 text-xl text-orange-500'>
                 Status: {prediction.status}
               </p>
             </div>

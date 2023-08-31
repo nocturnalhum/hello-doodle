@@ -1,21 +1,19 @@
-import React, { useEffect, useRef } from 'react';
-import { BsImages } from 'react-icons/bs';
+import React, { useEffect, useRef, useState } from 'react';
 import { TfiSave } from 'react-icons/tfi';
+import { IoHardwareChipOutline } from 'react-icons/io5';
 import { LuUndo2, LuRedo2 } from 'react-icons/lu';
 import { PiTrash } from 'react-icons/pi';
-import { useCanvasContext } from '@/contextAPI/context';
+import { useCanvasContext, useDiffusionContext } from '@/contextAPI/context';
+import StableDiffusion from './StableDiffusion';
+import convertImageToDataURL from '@/utils/convertImageToDataURL';
+import SaveImage from './SaveImage';
 
 export default function Footer() {
-  const inputRef = useRef();
-  const {
-    setIsModalOpen,
-    canvasRef,
-    setActions,
-    currentPosition,
-    setCurrentPosition,
-    undo,
-    redo,
-  } = useCanvasContext();
+  const [isOpen, toggle] = useState(false);
+  const [isSaveOpen, toggleSave] = useState(false);
+  const { isFlipped, setIsModalOpen, canvasRef, undo, redo } =
+    useCanvasContext();
+  const { error, prediction } = useDiffusionContext();
 
   useEffect(() => {
     const undoRedoFunction = (event) => {
@@ -34,64 +32,42 @@ export default function Footer() {
     };
   }, [undo, redo]);
 
-  const savePNG = (e) => {
+  // const savePNG = async (e) => {
+  //   const link = e.currentTarget;
+  //   let image;
+
+  //   if (isFlipped && prediction) {
+  //     const imagePromises = prediction.output;
+  //     const images = await Promise.all(imagePromises);
+  //     const imageURL = images[images.length - 1];
+  //     image = await convertImageToDataURL(imageURL);
+  //   } else {
+  //     image = canvasRef.current.toDataURL('image/png');
+  //   }
+
+  //   link.setAttribute('href', image);
+  //   link.setAttribute('download', 'canvas.png');
+  // };
+
+  const savePNG = async (e) => {
     let link = e.currentTarget;
     link.setAttribute('download', 'canvas.png');
-    let image = canvasRef.current.toDataURL('image/png');
+    let image =
+      isUpdated && prediction
+        ? await convertImageToDataURL(
+            prediction.output[prediction.output.length - 1]
+          )
+        : canvasRef.current.toDataURL('image/png');
+
     link.setAttribute('href', image);
   };
 
-  const handleClick = (e) => {
-    inputRef.current?.click();
+  const handleSave = () => {
+    toggleSave((prev) => !prev);
   };
 
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    const imageUrl = URL.createObjectURL(file);
-    const image = new Image();
-    image.src = imageUrl;
-    image.onload = () => {
-      const canvas = canvasRef.current;
-      const context = canvas.getContext('2d');
-
-      console.log('Canvas Width', canvas.width, 'Canvas Height', canvas.height);
-      console.log(
-        'Image Width',
-        image.naturalWidth,
-        'Image Height',
-        image.naturalHeight
-      );
-      const scale =
-        canvas.width > canvas.height
-          ? canvas.height / Math.max(image.naturalWidth, image.naturalHeight)
-          : canvas.width / Math.max(image.naturalWidth, image.naturalHeight);
-
-      const imageWidth = image.naturalWidth * scale;
-      const imageHeight = image.naturalHeight * scale;
-      const startX = (canvas.width - imageWidth) / 2;
-      const startY = (canvas.height - imageHeight) / 2;
-
-      // Create a new canvas to hold the scaled-down image
-      const scaledCanvas = document.createElement('canvas');
-      scaledCanvas.width = imageWidth;
-      scaledCanvas.height = imageHeight;
-      const scaledContext = scaledCanvas.getContext('2d');
-
-      // Draw the image on the scaled canvas
-      scaledContext.drawImage(image, 0, 0, imageWidth, imageHeight);
-
-      // Get the data URL of the scaled image
-      const drawing = scaledCanvas.toDataURL('image/png');
-
-      context.clearRect(0, 0, canvas.width, canvas.height);
-      context.drawImage(image, startX, startY, imageWidth, imageHeight);
-      localStorage.setItem('drawing', drawing);
-      setActions((prevActions) => {
-        const newActions = prevActions.slice(0, currentPosition + 1);
-        return [...newActions, drawing];
-      });
-      setCurrentPosition((prevPosition) => prevPosition + 1);
-    };
+  const handleSettings = () => {
+    toggle((prev) => !prev);
   };
 
   const clearCanvas = () => {
@@ -101,24 +77,26 @@ export default function Footer() {
   return (
     <div className='flex justify-center items-center text-gray-50  portrait:h-[5rem] portrait:w-full landscape:h-full landscape:w-[5rem]'>
       <div className='flex portrait:flex-row landscape:flex-col justify-center items-center gap-5'>
-        <div className='bg-black p-3 rounded-full hover:opacity-70'>
-          <a onClick={savePNG} href='download_link' className='select-none'>
-            <TfiSave size={25} />
-          </a>
-        </div>
-        <form
-          onClick={handleClick}
-          className='rounded-full bg-black p-3 cursor-pointer hover:opacity-70'
+        <button
+          onClick={handleSettings}
+          className={`${
+            error ? 'bg-red-500 animate-bounce' : 'bg-black'
+          } p-3 rounded-full hover:opacity-70 hover:animate-pulse`}
         >
-          <BsImages size={25} />
-          <input
-            type='file'
-            ref={inputRef}
-            onChange={handleFileChange}
-            accept='image/*'
-            className='hidden'
-          />
-        </form>
+          <IoHardwareChipOutline size={25} />
+        </button>
+        {isOpen && <StableDiffusion isOpen={isOpen} toggle={toggle} />}
+        {isSaveOpen && (
+          <SaveImage isSaveOpen={isSaveOpen} toggleSave={toggleSave} />
+        )}
+        <div className='bg-black p-3 rounded-full hover:opacity-70'>
+          <button onClick={handleSave} className='select-none'>
+            <TfiSave size={25} />
+          </button>
+          {/* <a onClick={handleSave} href='download_link' className='select-none'>
+            <TfiSave size={25} />
+          </a> */}
+        </div>
         <button
           onClick={undo}
           className='bg-black p-3 rounded-full hover:opacity-70'

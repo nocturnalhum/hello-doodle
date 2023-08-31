@@ -18,6 +18,7 @@ export default function AppStore({ children }) {
   const [color5, setColor5] = useState('#FFC200');
   const [radius, setRadius] = useState(5);
   const [smoothing, setSmoothing] = useState(0.5);
+  const [thinning, setThinning] = useState(0.5);
   const [taperStart, setTaperStart] = useState(0);
   const [taperEnd, setTaperEnd] = useState(0);
   const [fill, setFill] = useState(true);
@@ -28,7 +29,7 @@ export default function AppStore({ children }) {
   const [elements, setElements, undo, redo] = useHistory([]);
   const [tool, setTool] = useState('pen');
 
-  const canvasRef = useRef();
+  const canvasRef = useRef(null);
 
   return (
     <DiffusionContext.Provider
@@ -68,6 +69,8 @@ export default function AppStore({ children }) {
           setTaperEnd,
           smoothing,
           setSmoothing,
+          thinning,
+          setThinning,
           fill,
           setFill,
           isModalOpen,
