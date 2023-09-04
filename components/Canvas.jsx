@@ -79,6 +79,7 @@ export default function Canvas({ elementRef }) {
   // =============<<< MouseDown >>>============================================
   // ==========================================================================
   const handleMouseDown = (e) => {
+    e.preventDefault();
     let x, y;
     // Determine x,y offset based on mouse or touch device:
     if (e.touches) {
@@ -315,15 +316,17 @@ export default function Canvas({ elementRef }) {
   };
 
   return (
-    <canvas
-      ref={canvasRef}
-      onMouseDown={handleMouseDown}
-      onMouseMove={handleMouseMove}
-      onMouseUp={handleMouseUp}
-      onTouchStart={handleMouseDown}
-      onTouchMove={handleMouseMove}
-      onTouchEnd={handleMouseUp}
-      className='bg-white h-full w-full rounded-xl select-none touch-none cursor-crosshair'
-    />
+    <div className='h-full select-none touch-none'>
+      <canvas
+        ref={canvasRef}
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseUp}
+        onTouchStart={handleMouseDown}
+        onTouchMove={handleMouseMove}
+        onTouchEnd={handleMouseUp}
+        className='bg-white h-full w-full rounded-xl select-none touch-none cursor-crosshair'
+      />
+    </div>
   );
 }
