@@ -23,7 +23,7 @@ export default function OptionsRect() {
   };
 
   return (
-    <div className='w-full h-full flex  flex-col gap-2 capitalize overflow-y-auto select-none'>
+    <div className='w-full h-full flex flex-col gap-2 capitalize select-none'>
       <div className='flex items-center mb-1 gap-3'>
         fill shape:
         <ToggleSwitch value={useFill} onChange={handleChange} />

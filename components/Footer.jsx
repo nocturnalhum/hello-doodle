@@ -52,7 +52,9 @@ export default function Footer() {
           } p-2.5 rounded-full hover:opacity-70 hover:animate-pulse `}
         >
           <IoHardwareChipOutline size={30} />
-          <h5 className='absolute text-[10px] left-5 top-[17px]'>AI</h5>
+          <h5 className='absolute text-[10px] left-[20.5px] top-[17.5px]'>
+            AI
+          </h5>
         </button>
         {isOpen && <StableDiffusion isOpen={isOpen} toggle={toggle} />}
         {isSaveOpen && (

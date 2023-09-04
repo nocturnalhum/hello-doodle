@@ -3,13 +3,13 @@ import { PiPaintBrush, PiRectangle, PiCircle } from 'react-icons/pi';
 
 export default function SelectToolOption({ toolOption, setToolOption }) {
   return (
-    <div className='flex justify-start w-full sm:ml-10 select-none'>
+    <div className='flex justify-start w-full text-sm sm:ml-10 select-none'>
       <div className='flex flex-col items-start'>
         <div className='flex text-white sm:flex-col gap-4 ml-4 sm:ml-0'>
           <div className='flex flex-col items-center'>
             <button
               onClick={() => setToolOption('brush')}
-              className={`h-12 w-12 bg-black p-3 rounded-xl hover:opacity-80 ${
+              className={`h-12 w-12 bg-black p-3 rounded-xl hover:opacity-80 shadow-md ${
                 toolOption === 'brush' ? 'opacity-100' : 'opacity-50'
               }`}
             >
@@ -20,7 +20,7 @@ export default function SelectToolOption({ toolOption, setToolOption }) {
           <div className='flex flex-col items-center'>
             <button
               onClick={() => setToolOption('shapes')}
-              className={`h-12 w-12 bg-black p-3 rounded-xl hover:opacity-80 ${
+              className={`h-12 w-12 bg-black p-3 rounded-xl hover:opacity-80 shadow-md ${
                 toolOption === 'shapes' ? 'opacity-100' : 'opacity-50'
               }`}
             >

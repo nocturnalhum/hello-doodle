@@ -47,7 +47,7 @@ export default function Settings() {
 
   return (
     <div
-      className={`relative flex justify-center p-3  portrait:rounded-l-md landscape:rounded-t-md z-40  ${
+      className={`relative flex justify-center p-3 portrait:rounded-l-md landscape:rounded-t-md z-40  ${
         isOpen ? 'bg-red-500' : 'bg-gray-500'
       }`}
     >

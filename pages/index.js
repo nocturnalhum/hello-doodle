@@ -1,10 +1,13 @@
+import Header from '@/components/Header';
 import Card1 from '@/components/Card1';
 import Card2 from '@/components/Card2';
-import ConfirmationModal from '@/components/ConfirmationModal';
 import Footer from '@/components/Footer';
-import Header from '@/components/Header';
+import ConfirmationModal from '@/components/ConfirmationModal';
 import { useCanvasContext } from '@/contextAPI/context';
 import { MdOutlineFlipCameraAndroid } from 'react-icons/md';
+import { Manrope } from 'next/font/google';
+
+const manrope = Manrope({ subsets: ['latin'] });
 
 export default function Home() {
   const {
@@ -31,7 +34,7 @@ export default function Home() {
 
   return (
     <main
-      className={`flex h-[100dvh] min-h-[100dvh] items-center justify-between bg-gradient-to-br from-slate-700 via-blue-300 to-gray-400`}
+      className={`flex h-[100dvh] min-h-[100dvh] items-center justify-between bg-gradient-to-br from-slate-700 via-blue-300 to-gray-400 ${manrope.className}`}
     >
       <ConfirmationModal
         isOpen={isModalOpen}
