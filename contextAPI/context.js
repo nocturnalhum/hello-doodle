@@ -16,10 +16,10 @@ export default function AppStore({ children }) {
   const [color3, setColor3] = useState('#0F0');
   const [color4, setColor4] = useState('#00F');
   const [color5, setColor5] = useState('#FFC200');
-  const [radius, setRadius] = useState(10);
+  const [radius, setRadius] = useState(6);
   const [smoothing, setSmoothing] = useState(0.5);
-  const [thinning, setThinning] = useState(0.1);
-  const [taperStart, setTaperStart] = useState(0);
+  const [thinning, setThinning] = useState(0.3);
+  const [taperStart, setTaperStart] = useState(10);
   const [taperEnd, setTaperEnd] = useState(80);
   const [shapeRoughness, setShapeRoughness] = useState(1);
   const [useFill, setUseFill] = useState(0);
