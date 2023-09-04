@@ -301,7 +301,6 @@ const distance = (a, b) =>
 // =============<<< CursorForPosition >>>====================================
 // ==========================================================================
 export const cursorForPosition = (position) => {
-  console.log('Position', position);
   switch (position) {
     case 'tl':
     case 'br':
@@ -388,7 +387,6 @@ export const updateElement = (
   isShiftPressed
 ) => {
   const elementsCopy = [...elements];
-  console.log('Update', hachureAngle);
   switch (type) {
     case 'line':
     case 'rectangle':

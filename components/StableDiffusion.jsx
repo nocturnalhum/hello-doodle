@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
+import { v4 as uuidv4 } from 'uuid';
 import dataURLtoFile from '@/utils/dataURLtoFile';
 import { useCanvasContext, useDiffusionContext } from '@/contextAPI/context';
 
@@ -27,7 +28,7 @@ export default function StableDiffusion({ isOpen, toggle }) {
     const drawingDataUrl = canvas.toDataURL('image/png');
     const convertedUrlToFile = dataURLtoFile(
       drawingDataUrl,
-      'canvas-image.png'
+      `image-${uuidv4()}.png`
     );
 
     try {

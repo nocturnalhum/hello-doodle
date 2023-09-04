@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { TfiSave } from 'react-icons/tfi';
 import { IoHardwareChipOutline } from 'react-icons/io5';
 import { LuUndo2, LuRedo2 } from 'react-icons/lu';

@@ -287,7 +287,6 @@ export default function Canvas({ elementRef }) {
       adjustmentRequired(type)
     ) {
       const { x1, y1, x2, y2 } = adjustElementCoord(elements[index]);
-      console.log('Mouse Up', roughShape);
 
       updateElement(
         elements,

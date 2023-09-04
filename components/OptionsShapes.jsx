@@ -16,14 +16,14 @@ export default function OptionsRect() {
     hachureGap,
     setHachureGap,
   } = useCanvasContext();
-  console.log('Options Shape useHachure', useHachure);
+
   return (
     <div className='w-full h-full flex  flex-col gap-2 capitalize overflow-y-auto'>
       <div className='flex items-center mb-1 gap-3'>
         fill shape:
         <ToggleSwitch value={useHachure} onChange={setUseHachure} />
       </div>
-      width: {radius}
+      size: {radius}
       <Slider
         value={[radius]}
         min={1}
