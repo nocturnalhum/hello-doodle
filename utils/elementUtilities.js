@@ -23,7 +23,7 @@ export function createShape(
   taperStart,
   taperEnd,
   shapeRoughness,
-  useHachure,
+  useFill,
   hachureAngle,
   hachureGap,
   isShiftPressed
@@ -42,7 +42,6 @@ export function createShape(
 
   const seed = Math.floor(Math.random() * 2 ** 31);
 
-  const fill = useHachure ? color : 0;
   const fillStyle = hachureGap === 0 ? 'solid' : 0;
   switch (type) {
     case 'line':
@@ -63,7 +62,7 @@ export function createShape(
               hachureGap: hachureGap,
               stroke: color,
               strokeWidth: radius,
-              fill: fill,
+              fill: useFill,
               fillStyle: fillStyle,
               seed: seed,
             })
@@ -78,7 +77,7 @@ export function createShape(
                 hachureGap: hachureGap,
                 stroke: color,
                 strokeWidth: radius,
-                fill: fill,
+                fill: useFill,
                 fillStyle: fillStyle,
                 seed: seed,
               }
@@ -381,7 +380,7 @@ export const updateElement = (
   taperStart,
   taperEnd,
   shapeRoughness,
-  useHachure,
+  useFill,
   hachureAngle,
   hachureGap,
   isShiftPressed
@@ -405,7 +404,7 @@ export const updateElement = (
         taperStart,
         taperEnd,
         shapeRoughness,
-        useHachure,
+        useFill,
         hachureAngle,
         hachureGap,
         isShiftPressed

@@ -22,7 +22,7 @@ export default function AppStore({ children }) {
   const [taperStart, setTaperStart] = useState(0);
   const [taperEnd, setTaperEnd] = useState(80);
   const [shapeRoughness, setShapeRoughness] = useState(1);
-  const [useHachure, setUseHachure] = useState(false);
+  const [useFill, setUseFill] = useState(0);
   const [hachureAngle, setHachureAngle] = useState(-41);
   const [hachureGap, setHachureGap] = useState(8);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -76,8 +76,8 @@ export default function AppStore({ children }) {
           setThinning,
           shapeRoughness,
           setShapeRoughness,
-          useHachure,
-          setUseHachure,
+          useFill,
+          setUseFill,
           hachureAngle,
           setHachureAngle,
           hachureGap,

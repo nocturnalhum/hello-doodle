@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 export default function ToggleSwitch({ value, onChange }) {
   return (
     <div
-      onClick={() => onChange(!value)}
+      onClick={() => onChange()}
       className={`flex items-center h-5 w-10 rounded-full border-[1px] border-gray-500 transition-all ease-out duration-500 ${
         value ? 'bg-blue-500' : 'bg-gray-800'
       }`}

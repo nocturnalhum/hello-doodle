@@ -26,7 +26,7 @@ export default function Canvas({ elementRef }) {
     taperStart,
     taperEnd,
     shapeRoughness,
-    useHachure,
+    useFill,
     hachureAngle,
     hachureGap,
     canvasRef,
@@ -145,7 +145,7 @@ export default function Canvas({ elementRef }) {
         taperStart,
         taperEnd,
         shapeRoughness,
-        useHachure,
+        useFill,
         hachureAngle,
         hachureGap,
         isShiftPressed.current
@@ -201,7 +201,7 @@ export default function Canvas({ elementRef }) {
         taperStart,
         taperEnd,
         shapeRoughness,
-        useHachure,
+        useFill,
         hachureAngle,
         hachureGap,
         isShiftPressed.current // When isShiftPressed, rectangles and ellipses will be restricted to 1:1 ratio
@@ -241,7 +241,7 @@ export default function Canvas({ elementRef }) {
           taperStart,
           taperEnd,
           roughShape.options.roughness,
-          useHachure,
+          roughShape.options.fill,
           roughShape.options.hachureAngle,
           roughShape.options.hachureGap,
           isShiftPressed.current
@@ -267,7 +267,7 @@ export default function Canvas({ elementRef }) {
         taperStart,
         taperEnd,
         roughShape.options.roughness,
-        useHachure,
+        roughShape.options.fill,
         roughShape.options.hachureAngle,
         roughShape.options.hachureGap,
         isShiftPressed.current
@@ -305,7 +305,7 @@ export default function Canvas({ elementRef }) {
         taperStart,
         taperEnd,
         roughShape.options.roughness,
-        useHachure,
+        roughShape.options.fill,
         roughShape.options.hachureAngle,
         roughShape.options.hachureGap,
         isShiftPressed.current
@@ -313,6 +313,7 @@ export default function Canvas({ elementRef }) {
     }
     setAction('none');
     setSelectedElement(null);
+    console.log('Element', selectedElement.roughShape);
   };
 
   return (

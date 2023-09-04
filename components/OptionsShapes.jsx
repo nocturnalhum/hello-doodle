@@ -5,23 +5,28 @@ import ToggleSwitch from './ToggleSwitch';
 
 export default function OptionsRect() {
   const {
+    color,
     radius,
     setRadius,
     shapeRoughness,
     setShapeRoughness,
-    useHachure,
-    setUseHachure,
+    useFill,
+    setUseFill,
     hachureAngle,
     setHachureAngle,
     hachureGap,
     setHachureGap,
   } = useCanvasContext();
 
+  const handleChange = () => {
+    useFill === 0 ? setUseFill(color) : setUseFill(0);
+  };
+
   return (
     <div className='w-full h-full flex  flex-col gap-2 capitalize overflow-y-auto select-none'>
       <div className='flex items-center mb-1 gap-3'>
         fill shape:
-        <ToggleSwitch value={useHachure} onChange={setUseHachure} />
+        <ToggleSwitch value={useFill} onChange={handleChange} />
       </div>
       size: {radius}
       <Slider
@@ -31,7 +36,7 @@ export default function OptionsRect() {
         step={1}
         onValueChange={(value) => setRadius(...value)}
       />
-      drawing roughness: {shapeRoughness}
+      shape roughness: {shapeRoughness}
       <Slider
         value={[shapeRoughness]}
         min={0}
@@ -47,7 +52,7 @@ export default function OptionsRect() {
         step={1}
         onValueChange={(value) => setHachureAngle(...value)}
       />
-      fill space: {hachureGap}
+      fill gap: {hachureGap}
       <Slider
         value={[hachureGap]}
         min={0}
