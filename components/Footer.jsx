@@ -47,9 +47,9 @@ export default function Footer() {
       <div className='flex portrait:flex-row landscape:flex-col justify-center items-center gap-5'>
         <button
           onClick={handleSettings}
-          className={`relative ${
+          className={`relative touch-none select-none ${
             error ? ' bg-red-500 animate-bounce' : 'bg-black'
-          } p-2.5 rounded-full hover:opacity-70 hover:animate-pulse`}
+          } p-2.5 rounded-full hover:opacity-70 hover:animate-pulse `}
         >
           <IoHardwareChipOutline size={30} />
           <h5 className='absolute text-[10px] left-5 top-[17px]'>AI</h5>
