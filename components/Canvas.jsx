@@ -79,6 +79,7 @@ export default function Canvas({ elementRef }) {
   // =============<<< MouseDown >>>============================================
   // ==========================================================================
   const handleMouseDown = (e) => {
+    event.preventDefault();
     let x, y;
     // Determine x,y offset based on mouse or touch device:
     if (e.touches) {

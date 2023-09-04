@@ -16,7 +16,7 @@ export default function BrushOptions() {
     setThinning,
   } = useCanvasContext();
   return (
-    <div className='w-full h-full flex flex-col gap-2'>
+    <div className='w-full h-full flex flex-col gap-2 select-none'>
       Size: {radius}
       <Slider
         value={[radius]}

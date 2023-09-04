@@ -18,7 +18,7 @@ export default function OptionsRect() {
   } = useCanvasContext();
 
   return (
-    <div className='w-full h-full flex  flex-col gap-2 capitalize overflow-y-auto'>
+    <div className='w-full h-full flex  flex-col gap-2 capitalize overflow-y-auto select-none'>
       <div className='flex items-center mb-1 gap-3'>
         fill shape:
         <ToggleSwitch value={useHachure} onChange={setUseHachure} />
