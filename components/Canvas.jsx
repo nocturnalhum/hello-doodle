@@ -325,6 +325,7 @@ export default function Canvas({ elementRef }) {
       onTouchStart={handleMouseDown}
       onTouchMove={handleMouseMove}
       onTouchEnd={handleMouseUp}
+      style={{ touchAction: 'manipulation' }}
       className='bg-white h-full w-full rounded-xl select-none touch-none cursor-crosshair'
     />
   );
