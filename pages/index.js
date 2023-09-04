@@ -29,7 +29,6 @@ export default function Home() {
     setIsModalOpen(false);
   };
 
-  console.log('isFlipped - index', isFlipped);
   return (
     <main
       className={`flex h-screen min-h-screen items-center justify-between bg-gradient-to-br from-slate-700 via-blue-300 to-gray-400`}

@@ -16,18 +16,21 @@ export default function AppStore({ children }) {
   const [color3, setColor3] = useState('#0F0');
   const [color4, setColor4] = useState('#00F');
   const [color5, setColor5] = useState('#FFC200');
-  const [radius, setRadius] = useState(5);
+  const [radius, setRadius] = useState(10);
   const [smoothing, setSmoothing] = useState(0.5);
-  const [thinning, setThinning] = useState(0.5);
+  const [thinning, setThinning] = useState(0.1);
   const [taperStart, setTaperStart] = useState(0);
-  const [taperEnd, setTaperEnd] = useState(0);
-  const [fill, setFill] = useState(true);
+  const [taperEnd, setTaperEnd] = useState(80);
+  const [shapeRoughness, setShapeRoughness] = useState(1);
+  const [useHachure, setUseHachure] = useState(false);
+  const [hachureAngle, setHachureAngle] = useState(-41);
+  const [hachureGap, setHachureGap] = useState(8);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [actions, setActions] = useState([]);
   const [currentPosition, setCurrentPosition] = useState(-1);
   const [showTools, setShowTools] = useState(true);
   const [elements, setElements, undo, redo] = useHistory([]);
-  const [tool, setTool] = useState('pen');
+  const [tool, setTool] = useState('rectangle');
 
   const canvasRef = useRef(null);
 
@@ -71,8 +74,14 @@ export default function AppStore({ children }) {
           setSmoothing,
           thinning,
           setThinning,
-          fill,
-          setFill,
+          shapeRoughness,
+          setShapeRoughness,
+          useHachure,
+          setUseHachure,
+          hachureAngle,
+          setHachureAngle,
+          hachureGap,
+          setHachureGap,
           isModalOpen,
           setIsModalOpen,
           actions,

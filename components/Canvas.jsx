@@ -25,6 +25,10 @@ export default function Canvas({ elementRef }) {
     thinning,
     taperStart,
     taperEnd,
+    shapeRoughness,
+    useHachure,
+    hachureAngle,
+    hachureGap,
     canvasRef,
   } = useCanvasContext();
   const isShiftPressed = useRef(false);
@@ -36,6 +40,7 @@ export default function Canvas({ elementRef }) {
     const ctx = canvas.getContext('2d');
     ctx.fillStyle = '#FFF'; // Set the background color to white
     ctx.fillRect(0, 0, canvas.width, canvas.height);
+
     //  Initialize RoughJS Canvas
     const roughCanvas = rough.canvas(canvas);
     elements.forEach((element) => drawElement(roughCanvas, ctx, element));
@@ -107,7 +112,6 @@ export default function Canvas({ elementRef }) {
       const element = getElementAtPosition(x, y, elements);
       if (element) {
         if (element.type === 'pen') {
-          console.log('Set Offsets');
           const xOffsets = element.points.map((point) => x - point.x);
           const yOffsets = element.points.map((point) => y - point.y);
           setSelectedElement({ ...element, xOffsets, yOffsets });
@@ -139,9 +143,12 @@ export default function Canvas({ elementRef }) {
         thinning,
         taperStart,
         taperEnd,
+        shapeRoughness,
+        useHachure,
+        hachureAngle,
+        hachureGap,
         isShiftPressed.current
       );
-      // console.log('Element Set', elements);
       setElements((prev) => [...prev, element]);
       setSelectedElement(element);
       setAction(tool === 'text' ? 'writing' : 'draw');
@@ -176,7 +183,7 @@ export default function Canvas({ elementRef }) {
     if (action === 'draw') {
       const index = elements.length - 1;
       const { x1, y1 } = elements[index];
-      // When isShiftPressed, rectangles and ellipses will be restricted to 1:1 ratio
+
       updateElement(
         elements,
         setElements,
@@ -187,12 +194,16 @@ export default function Canvas({ elementRef }) {
         y,
         tool,
         color,
-        radius,
+        radius * 0.25, // Adjust thickness of shape elements to complement pen thickness
         smoothing,
         thinning,
         taperStart,
         taperEnd,
-        isShiftPressed.current
+        shapeRoughness,
+        useHachure,
+        hachureAngle,
+        hachureGap,
+        isShiftPressed.current // When isShiftPressed, rectangles and ellipses will be restricted to 1:1 ratio
       );
     } else if (action === 'moving') {
       if (selectedElement.type === 'pen') {
@@ -224,6 +235,14 @@ export default function Canvas({ elementRef }) {
           type,
           roughShape.options.stroke,
           roughShape.options.strokeWidth,
+          smoothing,
+          thinning,
+          taperStart,
+          taperEnd,
+          roughShape.options.roughness,
+          useHachure,
+          roughShape.options.hachureAngle,
+          roughShape.options.hachureGap,
           isShiftPressed.current
         );
       }
@@ -242,6 +261,14 @@ export default function Canvas({ elementRef }) {
         type,
         roughShape.options.stroke,
         roughShape.options.strokeWidth,
+        smoothing,
+        thinning,
+        taperStart,
+        taperEnd,
+        roughShape.options.roughness,
+        useHachure,
+        roughShape.options.hachureAngle,
+        roughShape.options.hachureGap,
         isShiftPressed.current
       );
     }
@@ -273,12 +300,19 @@ export default function Canvas({ elementRef }) {
         type,
         roughShape.options.stroke,
         roughShape.options.strokeWidth,
+        smoothing,
+        thinning,
+        taperStart,
+        taperEnd,
+        roughShape.options.roughness,
+        useHachure,
+        roughShape.options.hachureAngle,
+        roughShape.options.hachureGap,
         isShiftPressed.current
       );
     }
     setAction('none');
     setSelectedElement(null);
-    // console.log('Elements-index', elements[index]);
   };
 
   return (

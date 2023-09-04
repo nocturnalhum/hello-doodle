@@ -45,7 +45,9 @@ export default function SaveImage({ isSaveOpen, toggleSave }) {
               <button
                 onClick={saveAIOutput}
                 className={`flex justify-center bg-blue-500 px-2 py-2 rounded-lg select-none ${
-                  prediction ? 'cursor-pointer' : 'cursor-not-allowed'
+                  prediction
+                    ? 'cursor-pointer'
+                    : 'bg-gray-500/40 cursor-not-allowed'
                 }`}
                 disabled={!prediction}
               >

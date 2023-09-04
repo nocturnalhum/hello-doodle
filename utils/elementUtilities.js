@@ -22,6 +22,10 @@ export function createShape(
   thinning,
   taperStart,
   taperEnd,
+  shapeRoughness,
+  useHachure,
+  hachureAngle,
+  hachureGap,
   isShiftPressed
 ) {
   let x2Adjusted = x2;
@@ -36,6 +40,10 @@ export function createShape(
     y2Adjusted = y1 + (height >= 0 ? maxDimension : -maxDimension);
   }
 
+  const seed = Math.floor(Math.random() * 2 ** 31);
+
+  const fill = useHachure ? color : 0;
+  const fillStyle = hachureGap === 0 ? 'solid' : 0;
   switch (type) {
     case 'line':
     case 'rectangle':
@@ -43,13 +51,21 @@ export function createShape(
       const roughShape =
         type === 'line'
           ? generator.line(x1, y1, x2Adjusted, y2Adjusted, {
+              roughness: shapeRoughness,
               stroke: color,
               strokeWidth: radius,
+              seed: seed,
             })
           : type === 'rectangle'
           ? generator.rectangle(x1, y1, x2Adjusted - x1, y2Adjusted - y1, {
+              roughness: shapeRoughness,
+              hachureAngle: hachureAngle,
+              hachureGap: hachureGap,
               stroke: color,
               strokeWidth: radius,
+              fill: fill,
+              fillStyle: fillStyle,
+              seed: seed,
             })
           : generator.ellipse(
               x1,
@@ -57,8 +73,14 @@ export function createShape(
               (x2Adjusted - x1) * 3,
               (y2Adjusted - y1) * 3,
               {
+                roughness: shapeRoughness,
+                hachureAngle: hachureAngle,
+                hachureGap: hachureGap,
                 stroke: color,
                 strokeWidth: radius,
+                fill: fill,
+                fillStyle: fillStyle,
+                seed: seed,
               }
             );
       return { id, x1, y1, x2: x2Adjusted, y2: y2Adjusted, type, roughShape };
@@ -92,22 +114,25 @@ export function drawElement(roughCanvas, context, element) {
     case 'pen':
       const stroke = getSvgPathFromStroke(
         getStroke(element.points, {
-          size: element.radius * 1.5,
+          size: element.radius,
           smoothing: element.smoothing,
           thinning: element.thinning,
-          streamline: 0.5,
-          easing: (t) => t,
-          simulatePressure: true,
-          last: true,
+          streamline: 0.48,
+          easing: (t) =>
+            t <= 0
+              ? 0
+              : t >= 1
+              ? 1
+              : t < 0.5
+              ? Math.pow(2, 20 * t - 10) / 2
+              : (2 - Math.pow(2, -20 * t + 10)) / 2,
           start: {
             cap: true,
             taper: element.taperStart,
-            easing: (t) => t,
           },
           end: {
             cap: true,
             taper: element.taperEnd,
-            easing: (t) => t,
           },
         })
       );
@@ -334,7 +359,7 @@ export const resizedCoords = (x, y, position, coordinates) => {
     case 'onEllipse':
       return { x1, y1, x2: x, y2: y };
     default:
-      return null; //should not really get here...
+      return null; //default
   }
 };
 
@@ -352,17 +377,22 @@ export const updateElement = (
   type,
   color,
   radius,
+  smoothing,
+  thinning,
+  taperStart,
+  taperEnd,
+  shapeRoughness,
+  useHachure,
+  hachureAngle,
+  hachureGap,
   isShiftPressed
 ) => {
   const elementsCopy = [...elements];
+  console.log('Update', hachureAngle);
   switch (type) {
     case 'line':
     case 'rectangle':
     case 'ellipse':
-      // if (x1 === x2 && y1 === y2) {
-      //   console.log('Breaking');
-      //   break;
-      // }
       elementsCopy[id] = createShape(
         id,
         x1,
@@ -372,6 +402,14 @@ export const updateElement = (
         type,
         color,
         radius,
+        smoothing,
+        thinning,
+        taperStart,
+        taperEnd,
+        shapeRoughness,
+        useHachure,
+        hachureAngle,
+        hachureGap,
         isShiftPressed
       );
       break;

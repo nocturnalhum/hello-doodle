@@ -5,7 +5,7 @@ const ConfirmationModal = ({ isOpen, onConfirm, onCancel }) => {
 
   return (
     <div className='fixed inset-0 z-50 flex items-center justify-center bg-gray-800/75'>
-      <div className='bg-blue-200 px-6 py-8 rounded-lg'>
+      <div className='bg-blue-200 px-6 py-8 mx-1 rounded-lg'>
         <div className='bg-blue-50 backdrop-blur-sm rounded-lg p-4'>
           <p className='text-gray-700'>
             Are you sure you want to clear the canvas?
