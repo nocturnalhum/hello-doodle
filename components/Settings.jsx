@@ -67,7 +67,7 @@ export default function Settings() {
           <div className='h-full max-w-xs flex flex-col items-start p-5 gap-y-3 text-gray-950 font-medium  '>
             <ColorOptions toggle={toggle} />
             <hr
-              className='border border-gray-400/50'
+              className='border border-gray-400/50 select-none'
               style={{ width: width - '60' + 'px' }}
             />
             <div className='flex w-[80vw] max-w-md  h-full items-start flex-col sm:flex-row sm:justify-between'>
