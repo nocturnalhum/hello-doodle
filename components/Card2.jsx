@@ -6,7 +6,7 @@ export default function Card2() {
   const { prediction, message, error } = useDiffusionContext();
 
   return (
-    <div className='relative h-full w-full bg-gray-900 rounded-xl flex items-center justify-center'>
+    <div className='relative h-full w-full bg-gray-900 rounded-xl flex items-center justify-center touch-none select-none'>
       {prediction && (
         <>
           {prediction?.output && (
