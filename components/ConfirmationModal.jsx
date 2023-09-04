@@ -18,7 +18,7 @@ const ConfirmationModal = ({ isOpen, onConfirm, onCancel }) => {
               Yes
             </button>
             <button
-              className='px-4 py-2 bg-gray-950 text-white rounded-lg  hover:animate-pulse'
+              className='px-4 py-2 bg-blue-950 text-white rounded-lg  hover:animate-pulse'
               onClick={onCancel}
             >
               Cancel

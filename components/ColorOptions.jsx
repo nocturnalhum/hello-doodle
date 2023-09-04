@@ -15,9 +15,14 @@ export default function ColorOptions({ toggle }) {
     color3,
     color4,
     color5,
+    useFill,
+    setUseFill,
   } = useCanvasContext();
 
   const handleChange = (e, setColorVal) => {
+    if (useFill !== 0) {
+      setUseFill(e);
+    }
     setColorVal(e);
     setColor(e);
   };

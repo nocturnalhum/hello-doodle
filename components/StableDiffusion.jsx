@@ -131,7 +131,7 @@ export default function StableDiffusion({ isOpen, toggle }) {
 
             <div className='flex h-12 justify-between items-center px-2'>
               <button
-                className='bg-gray-950 h-8 w-16 rounded-lg'
+                className='bg-blue-950 h-8 w-16 rounded-lg'
                 onClick={(prev) => toggle(!prev)}
               >
                 Cancel

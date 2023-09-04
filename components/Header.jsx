@@ -6,7 +6,6 @@ import {
   PiRectangle,
   PiCircle,
   PiSelectionBackgroundDuotone,
-  PiEraserFill,
 } from 'react-icons/pi';
 import { useCanvasContext } from '@/contextAPI/context';
 import Settings from './Settings';
@@ -59,14 +58,16 @@ export default function Header() {
           >
             <PiSelectionBackgroundDuotone size={25} />
           </button>
-          <button
-            onClick={() => setTool('delete')}
-            className={`bg-black p-3 portrait:rounded-r-md landscape:rounded-b-md  hover:opacity-80 ${
-              tool === 'delete' ? 'opacity-100' : 'opacity-50'
-            }`}
-          >
-            <MdContentCut size={25} />
-          </button>
+          <div className='relative group'>
+            <button
+              onClick={() => setTool('delete')}
+              className={`bg-black p-3 portrait:rounded-r-md landscape:rounded-b-md hover:opacity-80 ${
+                tool === 'delete' ? 'opacity-100' : 'opacity-50'
+              }`}
+            >
+              <MdContentCut size={25} />
+            </button>
+          </div>
         </div>
       </div>
     </div>

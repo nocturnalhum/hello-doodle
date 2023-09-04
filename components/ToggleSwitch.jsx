@@ -5,7 +5,9 @@ export default function ToggleSwitch({ value, onChange }) {
     <div
       onClick={() => onChange()}
       className={`flex items-center h-5 w-10 rounded-full border-[1px] border-gray-500 transition-all ease-out duration-500 ${
-        value ? 'bg-blue-500' : 'bg-gray-800'
+        value
+          ? 'bg-gradient-to-b from-blue-700 to-blue-400'
+          : 'bg-gradient-to-b from-gray-700 to-gray-400'
       }`}
     >
       <span
