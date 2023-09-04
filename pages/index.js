@@ -31,8 +31,7 @@ export default function Home() {
 
   return (
     <main
-      className={`flex h-[100dvh] min-h-[100dvh] items-center justify-between bg-gradient-to-br from-slate-700 via-blue-300 to-gray-400`}
-      style={{ WebkitUserSelect: 'none' }}
+      className={`flex h-[100dvh] min-h-[100dvh] items-center justify-between bg-gradient-to-br from-slate-700 via-blue-300 to-gray-400 select-none touch-none`}
     >
       <ConfirmationModal
         isOpen={isModalOpen}
