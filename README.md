@@ -40,6 +40,15 @@ Examples:
 ---
 
 ## Input: 
+<img src="https://sketch-canvas-images.s3.ca-central-1.amazonaws.com/cat-0.png" width="500">
+
+## Output:
+<img src="https://sketch-canvas-images.s3.ca-central-1.amazonaws.com/cat-1.png" width="500">
+
+
+---
+
+## Input: 
 <img src="https://sketch-canvas-images.s3.ca-central-1.amazonaws.com/table_in.png" width="500">
 
 ## Output:
