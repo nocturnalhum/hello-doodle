@@ -1,7 +1,7 @@
 <br />
 <div aligh="center">
   <a href="https://hello-doodle.vercel.app/">
-    <h1>Hello Doodle</h1>
+    <h1 style={font-size: 100px}>Hello Doodle</h1>
   </a>
 </div>
 
