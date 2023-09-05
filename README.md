@@ -13,7 +13,7 @@
 </p>
 
 
-# What is it?
+## What is it?
 
 **Hello Doodle** is a drawing application that allows you to draw with brushes and shape elements and edit them by moving, resizing, and deleting them.
 It uses a Controlnet Diffusion model to convert drawings into full color AI-generated images.
