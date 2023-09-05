@@ -53,3 +53,11 @@ Examples:
 
 ## Output:
 <img src="https://sketch-canvas-images.s3.ca-central-1.amazonaws.com/table_out.png" width="500">
+
+---
+
+## Input: 
+<img src="https://sketch-canvas-images.s3.ca-central-1.amazonaws.com/chicken-in.png" width="500">
+
+## Output:
+<img src="https://sketch-canvas-images.s3.ca-central-1.amazonaws.com/chicken-out.png" width="500">
