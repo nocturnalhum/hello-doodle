@@ -23,4 +23,8 @@ It uses a Controlnet Diffusion model to convert drawings on full color AI-genera
 
 Examples:
 
+## Input: 
 <img src="https://sketch-canvas-images.s3.ca-central-1.amazonaws.com/degas_parrot.png" width="500">
+
+## Output:
+<img src="https://sketch-canvas-images.s3.ca-central-1.amazonaws.com/output_1_parrot.webp" width="500">
