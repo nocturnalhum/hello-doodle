@@ -7,11 +7,12 @@
 
 <p align="center">
   A Canvas drawing application
+  <br />
   <a href="https://hello-doodle.vercel.app/"><strong>Visit the website »</strong></a>
     <br />
     <br />
     <a href="https://github.com/nocturnalhum/hello-doodle/issues">Report Bug</a>
-    ·
+  .
     <a href="https://github.com/nocturnalhum/hello-doodle/issues">Request Feature</a>
 </p>
 
