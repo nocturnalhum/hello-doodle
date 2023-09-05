@@ -25,7 +25,7 @@ Examples:
 
 ## Output:
 
-<img src="https://sketch-canvas-images.s3.ca-central-1.amazonaws.com/output_1_parrot.jpeg" width="500">
+<img src="https://sketch-canvas-images.s3.ca-central-1.amazonaws.com/output_1_parrot.png" width="500">
 
 ---
 
