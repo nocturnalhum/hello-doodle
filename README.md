@@ -8,6 +8,7 @@
 <p align="center">
   A Canvas drawing application
   <br />
+  <br />
   <a href="https://hello-doodle.vercel.app/"><strong>Visit the website »</strong></a>
     <br />
     <br />
@@ -20,7 +21,7 @@
 # What is it?
 
 **Hello Doodle** is a drawing application that allows you to draw with brushes and shape elements and edit them by moving, resizing, and deleting them.
-It uses a Controlnet Diffusion model to convert drawings on full color AI-generated images.
+It uses a Controlnet Diffusion model to convert drawings into full color AI-generated images.
 
 Examples:
 
