@@ -116,7 +116,7 @@ export default function StableDiffusion({ isOpen, toggle }) {
       {isOpen && !message && (
         <div className='bg-blue-200 w-[80vw] h-[90vh] max-w-xl max-h-96 m-10 backdrop-blur-sm rounded-lg p-4'>
           <form onSubmit={handleSubmit} className='flex flex-col gap-2'>
-            <h2 className='text-black font-medium text-base my-2'>
+            <h2 className='text-black font-medium text-base my-2 ml-3'>
               Enter a prompt to convert image to AI generated image ...
             </h2>
             <textarea
@@ -128,7 +128,9 @@ export default function StableDiffusion({ isOpen, toggle }) {
               className={`h-full w-full rounded-xl p-5 text-gray-950 bg-blue-50 flex items-start focus:outline-none duration-700`}
               placeholder={`e.g. Cat in the style of Van Gogh`}
             />
-
+            <h1 className='text-black/70 ml-3'>
+              Works best with black & white line drawings
+            </h1>
             <div className='flex h-12 justify-between items-center px-2'>
               <button
                 className='bg-blue-950 h-8 w-16 rounded-lg'
