@@ -28,7 +28,8 @@ Examples:
 
 ## Output:
 <img src="https://sketch-canvas-images.s3.ca-central-1.amazonaws.com/output_1_parrot.jpeg" width="500">
-___
+
+---
 
 ## Input: 
 <img src="https://sketch-canvas-images.s3.ca-central-1.amazonaws.com/astronaut-0.png" width="500">
