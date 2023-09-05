@@ -31,7 +31,7 @@ Examples:
 ___
 
 ## Input: 
-<img src="https://sketch-canvas-images.s3.ca-central-1.amazonaws.com/astronaut.png" width="500">
+<img src="https://sketch-canvas-images.s3.ca-central-1.amazonaws.com/astronaut-0.png" width="500">
 
 ## Output:
 <img src="https://sketch-canvas-images.s3.ca-central-1.amazonaws.com/astronaut-out.png" width="500">
