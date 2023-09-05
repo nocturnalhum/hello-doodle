@@ -27,4 +27,4 @@ Examples:
 <img src="https://sketch-canvas-images.s3.ca-central-1.amazonaws.com/degas_parrot.png" width="500">
 
 ## Output:
-<img src="https://sketch-canvas-images.s3.ca-central-1.amazonaws.com/output_1_parrot.webp" width="500">
+<img src="https://sketch-canvas-images.s3.ca-central-1.amazonaws.com/output_1_parrot.jpeg" width="500">
