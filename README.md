@@ -1,9 +1,4 @@
-<br />
-<div aligh="center">
-  <a href="https://hello-doodle.vercel.app/">
-    <h1 style={font-size: 100px}>Hello Doodle</h1>
-  </a>
-</div>
+# Hello Doodle
 
 <p align="center">
   A Canvas drawing application
