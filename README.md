@@ -40,7 +40,7 @@ Examples:
 ---
 
 ## Input: 
-<img src="https://sketch-canvas-images.s3.ca-central-1.amazonaws.com/table-in.png" width="500">
+<img src="https://sketch-canvas-images.s3.ca-central-1.amazonaws.com/table_in.png" width="500">
 
 ## Output:
-<img src="https://sketch-canvas-images.s3.ca-central-1.amazonaws.com/table-out.png" width="500">
+<img src="https://sketch-canvas-images.s3.ca-central-1.amazonaws.com/table_out.png" width="500">
