@@ -66,10 +66,10 @@ export default function StableDiffusion({ isOpen, toggle }) {
         let prediction = await response.json();
         if (response.status !== 201) {
           setMessage(prediction.detail);
-          console.log('RES1', response);
+          // console.log('RES1', response);
           return;
         } else {
-          console.log('RES2', response);
+          // console.log('RES2', response);
         }
         setPrediction(prediction);
 
